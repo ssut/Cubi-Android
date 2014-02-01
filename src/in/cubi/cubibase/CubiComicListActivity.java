@@ -122,15 +122,19 @@ public class CubiComicListActivity extends CubiBaseActivity implements OnItemCli
 			ImageView ivThumbnail = (ImageView) curView.findViewById(R.id.ivComicListItemThumbnail);
 			TextView tvTitle = (TextView) curView.findViewById(R.id.tvComicListItemTitle);
 			TextView tvCreated = (TextView) curView.findViewById(R.id.tvComicListItemDate);
+			TextView tvRating = (TextView) curView.findViewById(R.id.tvComicListItemRating);
 
 			aq.id(ivThumbnail).image(urlThumbnail);
 			tvTitle.setText(chapterTitle);
 			tvCreated.setText(created);
 			
+			// 왠지 레이팅바 Max값이 안변함 -_-;
 			RatingBar rb = (RatingBar) curView.findViewById(R.id.rbComicListItem);
-			
+			float rating = (float) curChapter.getRating()/2;
+			rb.setRating(rating);
 			rb.setIsIndicator(true);
 			rb.setFocusable(false);
+			tvRating.setText("" + curChapter.getRating());
 
 			return curView;
 		}

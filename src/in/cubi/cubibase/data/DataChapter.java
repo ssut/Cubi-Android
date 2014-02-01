@@ -62,4 +62,22 @@ public class DataChapter {
 			return null;
 		}
 	}
+	
+	public double getRating(){
+		try {
+			return mJsonObject.getDouble("rating");
+		} catch (JSONException e){
+			e.printStackTrace();
+			return 0.0;
+		}
+	}
+	
+	public int getRatingNumber(){
+		try {
+			return mJsonObject.getInt("rating_number");
+		} catch (JSONException e){
+			e.printStackTrace();
+			return 0;
+		}
+	}
 }
