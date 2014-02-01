@@ -1,11 +1,14 @@
 package in.cubi.cubibase;
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.flurry.android.FlurryAgent;
 import com.mocoplex.adlib.AdlibAdViewContainer;
@@ -16,6 +19,7 @@ public class CubiBaseActivity extends ActionBarActivity {
 	private final String TAG = this.getClass().getSimpleName();
 	private Context mContext;
 	public boolean showAd = true;
+	private static Typeface mTypeface;
 
 	/** Adlib **/
 	private AdlibManager _amanager;
@@ -33,6 +37,11 @@ public class CubiBaseActivity extends ActionBarActivity {
 
 	@Override
 	public void setContentView(int layoutResID) {
+		if (CubiBaseActivity.mTypeface == null)
+			CubiBaseActivity.mTypeface = Typeface.createFromAsset(getAssets(), "NanumBarunGothic.mp3");
+        ViewGroup root = (ViewGroup) findViewById(android.R.id.content);
+        setGlobalFont(root);
+        
 		LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		// setContentView에 전달된 layout으로 view생성
 		View view = inflater.inflate(layoutResID, null);
@@ -100,5 +109,18 @@ public class CubiBaseActivity extends ActionBarActivity {
 	public void setAdsContainer(int rid){_amanager.setAdsContainer(rid);}
 	public void bindAdsContainer(AdlibAdViewContainer a){	_amanager.bindAdsContainer(a);}
 	public void setVersionCheckingListner(AdlibVersionCheckingListener l){ _amanager.setVersionCheckingListner(l);}
-	public void destroyAdsContainer() {_amanager.destroyAdsContainer();}	    
+	public void destroyAdsContainer() {_amanager.destroyAdsContainer();}
+	
+	// Font
+	void setGlobalFont(ViewGroup root) {
+	    for (int i = 0; i < root.getChildCount(); i++) {
+	        View child = root.getChildAt(i);
+	        if (child instanceof TextView){
+	            ((TextView)child).setTypeface(mTypeface);
+	        }
+	        else if (child instanceof ViewGroup){
+	            setGlobalFont((ViewGroup)child);
+	        }
+	    }
+	}
 }

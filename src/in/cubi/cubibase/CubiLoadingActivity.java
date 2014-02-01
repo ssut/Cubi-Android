@@ -35,7 +35,7 @@ public class CubiLoadingActivity extends CubiBaseActivity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		showAd = false;
+		showAd = true;
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.loading);
 		mContext= this;

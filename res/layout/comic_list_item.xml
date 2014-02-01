@@ -2,21 +2,15 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@color/listitem"
     android:orientation="horizontal" >
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginRight="0dp"
         android:orientation="vertical" >
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="2px"
-            android:background="#FFCCCCCC"
-            android:paddingLeft="5dp"
-            android:paddingRight="5dp" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -25,32 +19,65 @@
 
             <ImageView
                 android:id="@+id/ivComicListItemThumbnail"
-                android:layout_width="70dp"
-                android:layout_height="40dp"
-                android:layout_margin="5dp"
+                android:layout_width="100dp"
+                android:layout_height="59dp"
                 android:scaleType="centerCrop"
                 android:src="@drawable/ic_launcher" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
                 android:orientation="vertical" >
 
                 <TextView
                     android:id="@+id/tvComicListItemTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="tvMainListItemTitle" />
+                    android:layout_marginBottom="3dp"
+                    android:text="tvMainListItemTitle"
+                    android:textSize="16dp" />
 
-                <TextView
-                    android:id="@+id/tvComicListItemDate"
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="tvMainListItemDate"
-                    android:textColor="#FFCCCCCC"
-                    android:textSize="10dp" />
+                    android:gravity="center_vertical" >
+
+                    <RatingBar
+                        android:id="@+id/rbComicListItem"
+                        style="@style/CustomRatingBar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="16dp"
+                        android:layout_gravity="bottom" />
+
+                    <TextView
+                        android:id="@+id/tvComicListItemRating"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="3dp"
+                        android:text="10.0"
+                        android:textColor="@color/black"
+                        android:textSize="9dp" />
+
+                    <TextView
+                        android:id="@+id/tvComicListItemDate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:text="tvMainListItemDate"
+                        android:textColor="#FFCCCCCC"
+                        android:textSize="9dp" />
+                </LinearLayout>
             </LinearLayout>
         </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="@color/lightgray"
+            android:paddingLeft="0dp"
+            android:visibility="gone"
+            android:paddingRight="0dp" />
     </LinearLayout>
 
 </LinearLayout>

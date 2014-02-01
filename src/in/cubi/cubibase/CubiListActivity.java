@@ -63,8 +63,9 @@ public class CubiListActivity extends CubiBaseActivity implements OnItemClickLis
 		// ListView & Header
 		lvComic = (ListView) findViewById(R.id.lvComic);
 		LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-		viewHeader = inflater.inflate(R.layout.comic_header, null);
-		lvComic.addHeaderView(viewHeader);
+		viewHeader = (View) findViewById(R.id.viewComicHeader);
+//		viewHeader = inflater.inflate(R.layout.comic_header, null);
+//		lvComic.addHeaderView(viewHeader);
 		viewFooter = inflater.inflate(R.layout.comic_footer, null);
 		lvComic.addFooterView(viewFooter);
 		

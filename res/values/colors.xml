@@ -10,5 +10,6 @@
     
     
     <color name="black">#FF000000</color>
+    <color name="listitem">#FFF2F2F2</color>
 
 </resources>
