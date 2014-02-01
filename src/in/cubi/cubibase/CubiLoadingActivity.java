@@ -73,7 +73,7 @@ public class CubiLoadingActivity extends CubiBaseActivity {
 		/** Adlibr **/
 //		packageName = getPackageName();
 		
-		packageName = "in.cubi.cubi";
+		packageName = "in.cubi.cubibase";
 		adAdlibr = getResources().getString(R.string.ad_adlibr);
 		initAds();
 

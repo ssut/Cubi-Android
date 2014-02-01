@@ -7,6 +7,7 @@ import android.util.Log;
 
 public class DataImage {
 	private final String TAG = this.getClass().getSimpleName();
+	private final float ratio = (float) 2.25;
 	private JSONObject mJsonObject;
 
 	public DataImage(JSONObject jsonObject){
@@ -53,6 +54,13 @@ public class DataImage {
 		Log.d(TAG, "getHeightForResizedWidth : " + value);
 		return value;
 	}
+	
+	// 커버이미지를 고정된 세로크기에 맞출 때(ratio)
+	public int getFixedHeight(int width){
+		int height = (int)((float)width / ratio);
+		return height;
+	}
+	
 	// Cover Scale
 	public float getScaleForResizedWidth(int width){
 		float value;

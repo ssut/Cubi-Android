@@ -3,8 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center_horizontal"
-    android:paddingBottom="15dp"
-    android:orientation="vertical" >
+    android:orientation="vertical"
+    android:paddingBottom="15dp" >
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -15,8 +15,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:padding="10dp"
-            android:scaleType="fitCenter" />
+            android:scaleType="centerCrop" />
 
         <ProgressBar
             android:id="@+id/pbComicCover"
@@ -33,22 +32,40 @@
         android:paddingRight="15dp" >
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical" >
 
-            <TextView
-                android:id="@+id/tvComicTitle"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:text="tvMainComicTitle"
-                android:textSize="18dp" />
+                android:layout_marginTop="10dp"
+                android:layout_gravity="bottom"
+                android:layout_marginBottom="10dp" >
+
+                <TextView
+                    android:id="@+id/tvComicTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="ComicTitle"
+                    android:textColor="@color/black"
+                    android:textSize="30dp" />
+
+                <TextView
+                    android:id="@+id/tvComicAuthor"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="ComicAuthor"
+                    android:layout_marginLeft="5dp"
+                    android:textColor="@color/gray"
+                    android:textSize="16dp" />
+            </LinearLayout>
 
             <TextView
                 android:id="@+id/tvComicDescription"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="12dp"
                 android:text="tvMainComicDescription" />
         </LinearLayout>
 
@@ -66,8 +83,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="25dp"
-                    android:visibility="gone"
-                    android:orientation="vertical" >
+                    android:orientation="vertical"
+                    android:visibility="gone" >
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -80,8 +97,8 @@
                         android:id="@+id/tvComicCount"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="1111. 11. 11."
                         android:layout_marginBottom="5dp"
+                        android:text="1111. 11. 11."
                         android:textSize="9dp" />
 
                     <TextView
@@ -103,8 +120,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="15dp"
-                    android:visibility="gone"
-                    android:orientation="vertical" >
+                    android:orientation="vertical"
+                    android:visibility="gone" >
 
                     <TextView
                         android:id="@+id/tvComicCount"
@@ -124,8 +141,8 @@
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:visibility="gone"
-                    android:orientation="vertical" >
+                    android:orientation="vertical"
+                    android:visibility="gone" >
 
                     <TextView
                         android:id="@+id/tvComicSubscriber"

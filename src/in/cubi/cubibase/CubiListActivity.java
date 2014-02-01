@@ -34,7 +34,7 @@ public class CubiListActivity extends CubiBaseActivity implements OnItemClickLis
 	
 	private View viewHeader, viewFooter;
 	private ImageView ivComicCover;
-	private TextView tvComicTitle;
+	private TextView tvComicTitle, tvComicAuthor;
 	private TextView tvComicDescription;
 	private ListView lvComic;
 	private AAComic mAAComic;
@@ -74,6 +74,7 @@ public class CubiListActivity extends CubiBaseActivity implements OnItemClickLis
 		
 		ivComicCover = (ImageView) viewHeader.findViewById(R.id.ivComicCover);
 		tvComicTitle = (TextView) viewHeader.findViewById(R.id.tvComicTitle);
+		tvComicAuthor = (TextView) viewHeader.findViewById(R.id.tvComicAuthor);
 		tvComicDescription = (TextView) viewHeader.findViewById(R.id.tvComicDescription);
 		
 		// Header - 커버 이미지
@@ -81,7 +82,8 @@ public class CubiListActivity extends CubiBaseActivity implements OnItemClickLis
 		String urlCoverImage = curComicCover.getUrl();
 		LayoutParams coverParams = ivComicCover.getLayoutParams();
 		coverParams.width = Pref.getDisplayWidth(mContext);
-		coverParams.height = curComicCover.getHeightForResizedWidth(coverParams.width);
+//		coverParams.height = curComicCover.getHeightForResizedWidth(coverParams.width);
+		coverParams.height = curComicCover.getFixedHeight(Pref.getDisplayWidth(mContext));
 		ivComicCover.setLayoutParams(coverParams);
 		
 		float scale = curComicCover.getScaleForResizedWidth(coverParams.width);
@@ -92,6 +94,7 @@ public class CubiListActivity extends CubiBaseActivity implements OnItemClickLis
 		
 		// Header - 만화 제목, 설명
 		tvComicTitle.setText(mDataWork.getTitle());
+		tvComicAuthor.setText(mDataWork.getAuthor());
 		tvComicDescription.setText(mDataWork.getDescription());
 	}
 	

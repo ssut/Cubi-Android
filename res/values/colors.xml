@@ -7,5 +7,8 @@
     <color name="darkgray">#FF666666</color>
     <color name="gray">#FF999999</color>
     <color name="lightgray">#FFBBBBBB</color>
+    
+    
+    <color name="black">#FF000000</color>
 
 </resources>
