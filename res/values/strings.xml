@@ -1,8 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Cubi</string>
-    <string name="action_settings">Settings</string>
-    <string name="hello_world">Hello world!</string>
+    <!-- Cubi Information -->
+    <string name="app_name">CubiBase</string>
+    <string name="id_author">1</string>
+    <string name="id_work">1</string>
+	
+	<!-- AD Info -->
+	<string name="ad_adlibr">512755ffe4b02fa05c6baae1</string>
+	<string name="ad_adam">CubiBase_Adam</string>
+	<string name="ad_cauly">CubiBase_Cauly</string>
+	<string name="ad_inmobi">CubiBase_Inmobi</string>
+	
+	<!-- Flurry -->
+	<string name="id_flurry">CubiBase_Flurry</string>
 
 </resources>
