@@ -17,7 +17,7 @@ import com.mocoplex.adlib.AdlibManager.AdlibVersionCheckingListener;
 
 public class CubiBaseActivity extends ActionBarActivity {
 	private final String TAG = this.getClass().getSimpleName();
-	private Context mContext;
+	protected Context mContext;
 	public boolean showAd = true;
 	private static Typeface mTypeface;
 

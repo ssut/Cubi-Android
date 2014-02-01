@@ -10,6 +10,14 @@ public class DataChapter {
 		mJsonObject = jsonObject;
 	}
 	
+	public int getId(){
+		try{
+			return mJsonObject.getInt("id");
+		} catch (JSONException e){
+			e.printStackTrace();
+			return 0;
+		}
+	}
 	public String getTitle(){
 		try {
 			return mJsonObject.getString("title");

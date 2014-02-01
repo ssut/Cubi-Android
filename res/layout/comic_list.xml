@@ -7,7 +7,7 @@
 
     <include
         android:id="@+id/viewComicHeader"
-        layout="@layout/comic_header" />
+        layout="@layout/comic_list_header" />
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -27,7 +27,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:scaleType="fitXY"
-            android:src="@drawable/gradient"/>
+            android:src="@drawable/gradient2"/>
     </FrameLayout>
 
 </LinearLayout>

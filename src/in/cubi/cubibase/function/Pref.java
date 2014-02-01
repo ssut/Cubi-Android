@@ -10,19 +10,19 @@ public class Pref {
 	public static void setInfo(Context context, String idAuthor, String idWork){
 		SharedPreferences pref = context.getSharedPreferences("savedValue", Context.MODE_PRIVATE);
 		SharedPreferences.Editor editor = pref.edit();
-		editor.putString("idArtist", idAuthor);
-		editor.putString("idComic", idWork);
+		editor.putString("idAuthor", idAuthor);
+		editor.putString("idWork", idWork);
 		editor.commit();
 	}
 	
 	public static String getIdAuthor(Context context){
 		SharedPreferences pref = context.getSharedPreferences("savedValue", Context.MODE_PRIVATE);
-		return pref.getString("idArtist", "");
+		return pref.getString("idAuthor", "");
 	}
 	
 	public static String getIdWork(Context context){
 		SharedPreferences pref = context.getSharedPreferences("savedValue", Context.MODE_PRIVATE);
-		return pref.getString("idComic", "");
+		return pref.getString("idWork", "");
 	}
 	
 	// Display Width, Height 저장

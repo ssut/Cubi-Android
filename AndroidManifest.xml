@@ -35,8 +35,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="in.cubi.cubibase.CubiListActivity" >
-        </activity>
+        <activity android:name="in.cubi.cubibase.CubiComicListActivity" />
+        <activity android:name="in.cubi.cubibase.CubiComicDetailActivity" />
 
         <!-- Adlibr -->
         <activity

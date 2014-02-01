@@ -104,7 +104,7 @@ public class CubiLoadingActivity extends CubiBaseActivity {
 		protected void onPostExecute(Void result) {
 			super.onPostExecute(result);
 			mProgressBar.setVisibility(View.GONE);
-			Intent intent = new Intent(CubiLoadingActivity.this, CubiListActivity.class);
+			Intent intent = new Intent(CubiLoadingActivity.this, CubiComicListActivity.class);
 			startActivity(intent);
 			finish();
 		}
