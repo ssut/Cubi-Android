@@ -3,30 +3,160 @@
     android:layout_height="fill_parent" >
 
     <WebView
-            android:id="@+id/wvComicDetail"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-    
+        android:id="@+id/wvComicDetail"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        
         android:orientation="vertical" >
 
         <LinearLayout
             android:layout_width="match_parent"
+            android:background="@drawable/gradient_comic_detail"
+            android:alpha="0.9"
             android:layout_height="wrap_content" >
+
+            <TextView
+                android:id="@+id/tvComicDetailTitle"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical|left"
+                android:paddingLeft="10dp"
+                android:text="@string/comicdetail_title"
+                android:textSize="14dp" />
+
+            <View
+                android:layout_width="1px"
+                android:layout_height="match_parent"
+                android:background="@color/line_left" />
+
+            <View
+                android:layout_width="1px"
+                android:layout_height="match_parent"
+                android:background="@color/line_right" />
+
+            <ImageButton
+                android:id="@+id/btnComicDetailShare"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@color/transparent"
+                android:src="@drawable/icon_share" />
         </LinearLayout>
-        
+
         <View
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_weight="1"/>
+            android:layout_weight="1" />
 
         <LinearLayout
             android:layout_width="match_parent"
+            android:background="@drawable/gradient_comic_detail"
+            android:alpha="0.9"
             android:layout_height="wrap_content" >
-        </LinearLayout>
 
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:gravity="center" >
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:padding="5dp"
+                    android:src="@drawable/icon_pencil" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="3dp"
+                    android:gravity="center_vertical|left"
+                    android:text="@string/comicdetail_comment"
+                    android:textSize="@dimen/comicdetail_fontsize" />
+
+                <TextView
+                    android:id="@+id/tvComicDetailCommentNumber"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="3dp"
+                    android:gravity="center_vertical|left"
+                    android:text="(35)"
+                    android:textSize="@dimen/comicdetail_fontsize" />
+
+                <View
+                    android:layout_width="1px"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="15dp"
+                    android:background="@color/line_left" />
+
+                <View
+                    android:layout_width="1px"
+                    android:layout_height="match_parent"
+                    android:background="@color/line_right" />
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="15dp"
+                    android:padding="5dp"
+                    android:src="@drawable/icon_rating" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="3dp"
+                    android:gravity="center_vertical|left"
+                    android:text="@string/comicdetail_rating"
+                    android:textSize="@dimen/comicdetail_fontsize" />
+
+                <TextView
+                    android:id="@+id/tvComicDetailRating"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="3dp"
+                    android:gravity="center_vertical|left"
+                    android:text="(9.9)"
+                    android:textSize="@dimen/comicdetail_fontsize" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="1px"
+                android:layout_height="match_parent"
+                android:background="@color/line_left" />
+
+            <View
+                android:layout_width="1px"
+                android:layout_height="match_parent"
+                android:background="@color/line_right" />
+
+            <ImageButton
+                android:id="@+id/btnComicDetailPrev"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@color/transparent"
+                android:src="@drawable/icon_prev" />
+
+            <View
+                android:layout_width="1px"
+                android:layout_height="match_parent"
+                android:background="@color/line_left" />
+
+            <View
+                android:layout_width="1px"
+                android:layout_height="match_parent"
+                android:background="@color/line_right" />
+
+            <ImageButton
+                android:id="@+id/btnComicDetailNext"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@color/transparent"
+                android:src="@drawable/icon_next" />
+        </LinearLayout>
     </LinearLayout>
 
 </FrameLayout>

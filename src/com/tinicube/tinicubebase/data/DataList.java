@@ -1,4 +1,4 @@
-package in.cubi.cubibase.data;
+package com.tinicube.tinicubebase.data;
 
 import java.util.ArrayList;
 

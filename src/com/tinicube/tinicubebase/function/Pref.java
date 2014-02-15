@@ -1,4 +1,4 @@
-package in.cubi.cubibase.function;
+package com.tinicube.tinicubebase.function;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -7,6 +7,8 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 public class Pref {
+	
+	
 	public static void setInfo(Context context, String idAuthor, String idWork){
 		SharedPreferences pref = context.getSharedPreferences("savedValue", Context.MODE_PRIVATE);
 		SharedPreferences.Editor editor = pref.edit();

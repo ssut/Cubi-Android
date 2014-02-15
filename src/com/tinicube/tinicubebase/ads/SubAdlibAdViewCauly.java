@@ -9,9 +9,8 @@
  * confirmed compatible with cauly SDK 3.0
  */
 
-package in.cubi.cubibase.ads;
+package com.tinicube.tinicubebase.ads;
 
-import in.cubi.cubibase.R;
 import android.content.Context;
 import android.util.AttributeSet;
 
@@ -19,6 +18,7 @@ import com.fsn.cauly.CaulyAdInfo;
 import com.fsn.cauly.CaulyAdInfoBuilder;
 import com.fsn.cauly.CaulyAdView;
 import com.mocoplex.adlib.SubAdlibAdViewCore;
+import com.tinicube.tinicubebase.R;
 
 // 자세한 세부 내용은 CAULY SDK 개발 문서를 참조해주세요.
 public class SubAdlibAdViewCauly extends SubAdlibAdViewCore  {

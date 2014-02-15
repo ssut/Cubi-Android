@@ -3,8 +3,8 @@
 
     <!-- Cubi Information -->
     <string name="app_name">CubiBase</string>
-    <string name="id_author">1</string>
-    <string name="id_work">1</string>
+    <string name="id_author">60</string>
+    <string name="id_work">63</string>
 	
 	<!-- AD Info -->
 	<string name="ad_adlibr">512755ffe4b02fa05c6baae1</string>
@@ -14,5 +14,11 @@
 	
 	<!-- Flurry -->
 	<string name="id_flurry">CubiBase_Flurry</string>
+	
+	
+	<!-- Comic Detail -->
+	<string name="comicdetail_title">제목</string>
+	<string name="comicdetail_comment">댓글</string>
+	<string name="comicdetail_rating">평점</string>
 
 </resources>

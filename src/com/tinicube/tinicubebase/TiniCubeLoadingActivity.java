@@ -1,8 +1,4 @@
-package in.cubi.cubibase;
-import in.cubi.cubibase.function.C;
-import in.cubi.cubibase.function.JsonFunc;
-import in.cubi.cubibase.function.Pref;
-
+package com.tinicube.tinicubebase;
 import org.json.JSONObject;
 
 import android.content.Context;
@@ -20,8 +16,11 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 
 import com.mocoplex.adlib.AdlibConfig;
+import com.tinicube.tinicubebase.function.C;
+import com.tinicube.tinicubebase.function.JsonFunc;
+import com.tinicube.tinicubebase.function.Pref;
 
-public class CubiLoadingActivity extends CubiBaseActivity {
+public class TiniCubeLoadingActivity extends TiniCubeBaseActivity {
 	private final String TAG = getClass().getSimpleName();
 	public boolean Debug = true;
 	private Context mContext;
@@ -73,7 +72,7 @@ public class CubiLoadingActivity extends CubiBaseActivity {
 		/** Adlibr **/
 //		packageName = getPackageName();
 		
-		packageName = "in.cubi.cubibase";
+		packageName = "com.tinicube.tinicubebase";
 		adAdlibr = getResources().getString(R.string.ad_adlibr);
 		initAds();
 
@@ -104,7 +103,7 @@ public class CubiLoadingActivity extends CubiBaseActivity {
 		protected void onPostExecute(Void result) {
 			super.onPostExecute(result);
 			mProgressBar.setVisibility(View.GONE);
-			Intent intent = new Intent(CubiLoadingActivity.this, CubiComicListActivity.class);
+			Intent intent = new Intent(TiniCubeLoadingActivity.this, TiniCubeComicListActivity.class);
 			startActivity(intent);
 			finish();
 		}

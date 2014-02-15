@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <color name="transparent">#00FFFFFF</color>
     <color name="blue_color">#FF6086D6</color>
     <color name="green_color">#FF88E861</color>
     <color name="verydarkgray">#FF333333</color>
@@ -11,5 +12,9 @@
     
     <color name="black">#FF000000</color>
     <color name="listitem">#FFF2F2F2</color>
+    
+   	<!-- Line -->
+   	<color name="line_left">#80000000</color>
+   	<color name="line_right">#40FFFFFF</color>
 
 </resources>

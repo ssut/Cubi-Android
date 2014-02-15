@@ -1,4 +1,4 @@
-package in.cubi.cubibase;
+package com.tinicube.tinicubebase;
 
 import android.content.Context;
 import android.graphics.Typeface;
@@ -15,10 +15,10 @@ import com.mocoplex.adlib.AdlibAdViewContainer;
 import com.mocoplex.adlib.AdlibManager;
 import com.mocoplex.adlib.AdlibManager.AdlibVersionCheckingListener;
 
-public class CubiBaseActivity extends ActionBarActivity {
+public class TiniCubeBaseActivity extends ActionBarActivity {
 	private final String TAG = this.getClass().getSimpleName();
 	protected Context mContext;
-	public boolean showAd = true;
+	public boolean showAd = false;
 	private static Typeface mTypeface;
 
 	/** Adlib **/
@@ -37,8 +37,8 @@ public class CubiBaseActivity extends ActionBarActivity {
 
 	@Override
 	public void setContentView(int layoutResID) {
-		if (CubiBaseActivity.mTypeface == null)
-			CubiBaseActivity.mTypeface = Typeface.createFromAsset(getAssets(), "NanumBarunGothic.mp3");
+		if (TiniCubeBaseActivity.mTypeface == null)
+			TiniCubeBaseActivity.mTypeface = Typeface.createFromAsset(getAssets(), "NanumBarunGothic.mp3");
         ViewGroup root = (ViewGroup) findViewById(android.R.id.content);
         setGlobalFont(root);
         

@@ -1,4 +1,4 @@
-package in.cubi.cubibase.function;
+package com.tinicube.tinicubebase.function;
 
 import java.io.BufferedReader;
 import java.io.InputStream;

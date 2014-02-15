@@ -1,10 +1,4 @@
-package in.cubi.cubibase;
-
-import in.cubi.cubibase.data.DataChapter;
-import in.cubi.cubibase.data.DataImage;
-import in.cubi.cubibase.data.DataList;
-import in.cubi.cubibase.data.DataWork;
-import in.cubi.cubibase.function.Pref;
+package com.tinicube.tinicubebase;
 
 import java.util.ArrayList;
 
@@ -27,8 +21,13 @@ import android.widget.TextView;
 
 import com.androidquery.AQuery;
 import com.androidquery.callback.ImageOptions;
+import com.tinicube.tinicubebase.data.DataChapter;
+import com.tinicube.tinicubebase.data.DataImage;
+import com.tinicube.tinicubebase.data.DataList;
+import com.tinicube.tinicubebase.data.DataWork;
+import com.tinicube.tinicubebase.function.Pref;
 
-public class CubiComicListActivity extends CubiBaseActivity implements OnItemClickListener{
+public class TiniCubeComicListActivity extends TiniCubeBaseActivity implements OnItemClickListener{
 	private final String TAG = this.getClass().getSimpleName();
 	private AQuery aq;
 
@@ -146,8 +145,9 @@ public class CubiComicListActivity extends CubiBaseActivity implements OnItemCli
 		// Position 0, Last(Header, Footer) 일때는 작동하지않고, position-1값을 넘겨줌
 		DataChapter curDataChapter = mDataChapterList.get(position);
 		int chapterId = curDataChapter.getId();
-		Intent intent = new Intent(CubiComicListActivity.this, CubiComicDetailActivity.class);
+		Intent intent = new Intent(TiniCubeComicListActivity.this, TiniCubeComicDetailActivity.class);
 		intent.putExtra("chapterId", chapterId);
+		intent.putExtra("position", position);
 		startActivity(intent);
 	}
 
