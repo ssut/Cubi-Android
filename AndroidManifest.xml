@@ -34,6 +34,7 @@
         </activity>
         <activity android:name="com.tinicube.tinicubebase.TiniCubeComicListActivity" />
         <activity android:name="com.tinicube.tinicubebase.TiniCubeComicDetailActivity" />
+        <activity android:name="com.tinicube.tinicubebase.commentrating.TiniCubeCommentRatingActivity" />
 
         <!-- Adlibr -->
         <activity

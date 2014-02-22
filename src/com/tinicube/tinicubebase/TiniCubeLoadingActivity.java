@@ -40,7 +40,7 @@ public class TiniCubeLoadingActivity extends TiniCubeBaseActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		showAd = false;
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.loading);
+		setContentView(R.layout.loading_activity);
 		mContext= this;
 
 		/** Debug message **/
@@ -99,7 +99,7 @@ public class TiniCubeLoadingActivity extends TiniCubeBaseActivity {
 		@Override
 		protected Void doInBackground(Void... params) {
 			try{
-				String url = C.URL_LIST + idWork;
+				String url = C.API_LIST + idWork;
 				Log.d(TAG, "API_MainURL : " + url);
 				JSONObject jsonObjectCubi = JsonFunc.getJSONfromURLGet(url);
 				Pref.setJsonObject(mContext, jsonObjectCubi);

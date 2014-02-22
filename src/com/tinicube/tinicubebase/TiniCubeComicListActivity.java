@@ -21,10 +21,10 @@ import android.widget.TextView;
 
 import com.androidquery.AQuery;
 import com.androidquery.callback.ImageOptions;
-import com.tinicube.tinicubebase.data.DataChapter;
 import com.tinicube.tinicubebase.data.DataImage;
-import com.tinicube.tinicubebase.data.DataList;
-import com.tinicube.tinicubebase.data.DataWork;
+import com.tinicube.tinicubebase.data.work.DataChapter;
+import com.tinicube.tinicubebase.data.work.DataList;
+import com.tinicube.tinicubebase.data.work.DataWork;
 import com.tinicube.tinicubebase.function.Pref;
 
 public class TiniCubeComicListActivity extends TiniCubeBaseActivity implements OnItemClickListener{
@@ -47,7 +47,7 @@ public class TiniCubeComicListActivity extends TiniCubeBaseActivity implements O
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.comic_list);
+		setContentView(R.layout.comic_list_activity);
 		aq = new AQuery(this);
 
 		mDataList = new DataList(Pref.getJsonObject(mContext));

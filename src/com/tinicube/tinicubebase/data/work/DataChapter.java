@@ -1,15 +1,20 @@
-package com.tinicube.tinicubebase.data;
+package com.tinicube.tinicubebase.data.work;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class DataChapter {
-	private JSONObject mJsonObject;
-	
-	public DataChapter(JSONObject jsonObject){
-		mJsonObject = jsonObject;
+import com.tinicube.tinicubebase.data.BaseData;
+import com.tinicube.tinicubebase.data.DataImage;
+
+public class DataChapter extends BaseData {
+
+	public DataChapter(JSONObject jsonObject) {
+		super(jsonObject);
 	}
-	
+	public DataChapter(){
+		super();
+	}
+
 	public int getId(){
 		try{
 			return mJsonObject.getInt("id");

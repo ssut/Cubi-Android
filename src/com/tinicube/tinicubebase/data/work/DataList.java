@@ -1,4 +1,4 @@
-package com.tinicube.tinicubebase.data;
+package com.tinicube.tinicubebase.data.work;
 
 import java.util.ArrayList;
 

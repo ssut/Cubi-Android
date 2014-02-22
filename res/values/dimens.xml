@@ -6,6 +6,6 @@
     
     
     <!-- Comic Detail -->
-    <dimen name="comicdetail_fontsize">14dp</dimen>
+    <dimen name="comicdetail_fontsize">12dp</dimen>
 
 </resources>

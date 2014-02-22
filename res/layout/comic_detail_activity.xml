@@ -10,16 +10,17 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        
         android:orientation="vertical" >
 
         <LinearLayout
             android:id="@+id/viewComicDetailTop"
-            android:visibility="gone"
             android:layout_width="match_parent"
-            android:background="@drawable/gradient_comic_detail"
+            android:layout_height="wrap_content"
             android:alpha="0.9"
-            android:layout_height="wrap_content" >
+            android:background="@drawable/gradient_comic_detail"
+            android:clickable="true"
+            android:focusable="true"
+            android:visibility="gone" >
 
             <TextView
                 android:id="@+id/tvComicDetailTitle"
@@ -57,39 +58,47 @@
         <LinearLayout
             android:id="@+id/viewComicDetailBottom"
             android:layout_width="match_parent"
-            android:visibility="gone"
-            android:background="@drawable/gradient_comic_detail"
+            android:layout_height="wrap_content"
             android:alpha="0.9"
-            android:layout_height="wrap_content" >
+            android:background="@drawable/gradient_comic_detail"
+            android:clickable="true"
+            android:focusable="true"
+            android:visibility="gone" >
 
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="40dp"
                 android:layout_weight="1"
+                android:id="@+id/viewComicDetailCommentRating"
                 android:gravity="center" >
 
-                <ImageView
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:padding="5dp"
-                    android:src="@drawable/icon_pencil" />
-
-                <TextView
+                <LinearLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="3dp"
-                    android:gravity="center_vertical|left"
-                    android:text="@string/comicdetail_comment"
-                    android:textSize="@dimen/comicdetail_fontsize" />
+                    android:layout_height="match_parent" >
 
-                <TextView
-                    android:id="@+id/tvComicDetailCommentNumber"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="3dp"
-                    android:gravity="center_vertical|left"
-                    android:text="(35)"
-                    android:textSize="@dimen/comicdetail_fontsize" />
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:padding="5dp"
+                        android:src="@drawable/icon_pencil" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="3dp"
+                        android:gravity="center_vertical|left"
+                        android:text="@string/comicdetail_comment"
+                        android:textSize="@dimen/comicdetail_fontsize" />
+
+                    <TextView
+                        android:id="@+id/tvComicDetailCommentNumber"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="3dp"
+                        android:gravity="center_vertical|left"
+                        android:text="(35)"
+                        android:textSize="@dimen/comicdetail_fontsize" />
+                </LinearLayout>
 
                 <View
                     android:layout_width="1px"
@@ -102,29 +111,34 @@
                     android:layout_height="match_parent"
                     android:background="@color/line_right" />
 
-                <ImageView
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_marginLeft="15dp"
-                    android:padding="5dp"
-                    android:src="@drawable/icon_rating" />
-
-                <TextView
+                <LinearLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="3dp"
-                    android:gravity="center_vertical|left"
-                    android:text="@string/comicdetail_rating"
-                    android:textSize="@dimen/comicdetail_fontsize" />
+                    android:layout_height="match_parent" >
 
-                <TextView
-                    android:id="@+id/tvComicDetailRating"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="3dp"
-                    android:gravity="center_vertical|left"
-                    android:text="(9.9)"
-                    android:textSize="@dimen/comicdetail_fontsize" />
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_marginLeft="15dp"
+                        android:padding="5dp"
+                        android:src="@drawable/icon_rating" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="3dp"
+                        android:gravity="center_vertical|left"
+                        android:text="@string/comicdetail_rating"
+                        android:textSize="@dimen/comicdetail_fontsize" />
+
+                    <TextView
+                        android:id="@+id/tvComicDetailRating"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="3dp"
+                        android:gravity="center_vertical|left"
+                        android:text="(9.9)"
+                        android:textSize="@dimen/comicdetail_fontsize" />
+                </LinearLayout>
             </LinearLayout>
 
             <View

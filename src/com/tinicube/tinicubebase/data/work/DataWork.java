@@ -1,13 +1,19 @@
-package com.tinicube.tinicubebase.data;
+package com.tinicube.tinicubebase.data.work;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class DataWork {
-	private JSONObject mJsonObject;
+import com.tinicube.tinicubebase.data.BaseData;
+import com.tinicube.tinicubebase.data.DataImage;
 
-	public DataWork(JSONObject jsonObject){
-		mJsonObject = jsonObject;
+public class DataWork extends BaseData {
+	
+	public DataWork(JSONObject jsonObject) {
+		super(jsonObject);
+	}
+	
+	public int getId(){
+		return getInt("id");
 	}
 
 	public String getTitle(){

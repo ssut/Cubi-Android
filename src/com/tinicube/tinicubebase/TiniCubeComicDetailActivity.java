@@ -17,8 +17,9 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.androidquery.AQuery;
-import com.tinicube.tinicubebase.data.DataChapter;
-import com.tinicube.tinicubebase.data.DataList;
+import com.tinicube.tinicubebase.commentrating.TiniCubeCommentRatingActivity;
+import com.tinicube.tinicubebase.data.work.DataChapter;
+import com.tinicube.tinicubebase.data.work.DataList;
 import com.tinicube.tinicubebase.function.C;
 import com.tinicube.tinicubebase.function.Pref;
 
@@ -31,6 +32,7 @@ public class TiniCubeComicDetailActivity extends TiniCubeBaseActivity implements
 	private WebView wv;
 	private DataList mDataList;
 	private ArrayList<DataChapter> mDataChapterList;
+	private DataChapter mDataChapter;
 
 	private View viewTop, viewBottom;
 	private boolean showOverlayView = false;
@@ -38,13 +40,14 @@ public class TiniCubeComicDetailActivity extends TiniCubeBaseActivity implements
 	
 	private Animation aniShow, aniHide;
 	private ImageButton btnPrev, btnNext;
+	private View viewCommentRating;
 
 	private int curPosition = 0;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.comic_detail);
+		setContentView(R.layout.comic_detail_activity);
 		aq = new AQuery(this);
 
 		getSupportActionBar().hide();
@@ -55,14 +58,19 @@ public class TiniCubeComicDetailActivity extends TiniCubeBaseActivity implements
 		btnNext = (ImageButton) findViewById(R.id.btnComicDetailNext);
 		viewTop = (View) findViewById(R.id.viewComicDetailTop);
 		viewBottom = (View) findViewById(R.id.viewComicDetailBottom);
+		viewCommentRating = (View) findViewById(R.id.viewComicDetailCommentRating);
+		
+		/** UI Event **/
+		viewCommentRating.setOnClickListener(this);
 
 		/** Animation **/
 		// Setting 버튼 애니메이션
 		aniShow = new AlphaAnimation(0, 1);
-		aniShow.setDuration(500);
+		aniShow.setDuration(250);
 		aniHide = new AlphaAnimation(1, 0);
-		aniHide.setDuration(500);
+		aniHide.setDuration(250);
 
+		/** 리스트에서 전달받은 DataChapterList 변수에 삽입 **/
 		mDataList = new DataList(Pref.getJsonObject(mContext));
 		mDataChapterList = mDataList.getDataChapters();
 
@@ -70,12 +78,12 @@ public class TiniCubeComicDetailActivity extends TiniCubeBaseActivity implements
 		//		int chapterId = intent.getIntExtra("chapterId", 0);
 		int position = intent.getIntExtra("position", 0);
 		curPosition = position;
-		DataChapter curDataChapter = mDataChapterList.get(position);
+		mDataChapter = mDataChapterList.get(position);
 
-		String url = C.URL_DETAIL + Pref.getIdWork(mContext) + "/" + curDataChapter.getId();
-		Log.d(TAG, "ChapterId : " + curDataChapter.getId());
+		String url = C.API_DETAIL + Pref.getIdWork(mContext) + "/" + mDataChapter.getId();
+		Log.d(TAG, "ChapterId : " + mDataChapter.getId());
 		Log.d(TAG, "Chapter URL : " + url);
-		tvTitle.setText(curDataChapter.getTitle());
+		tvTitle.setText(mDataChapter.getTitle());
 
 
 		wv = (WebView) findViewById(R.id.wvComicDetail);
@@ -91,28 +99,18 @@ public class TiniCubeComicDetailActivity extends TiniCubeBaseActivity implements
 		wv.setOnTouchListener(this);
 	}
 
-	private void toggleView(){
-		if(showOverlayView){
-			showOverlayView = false;
-			viewTop.setAnimation(aniHide);
-			viewBottom.setAnimation(aniHide);
-			viewTop.setVisibility(View.GONE);
-			viewBottom.setVisibility(View.GONE);
-		} else{
-			showOverlayView = true;
-			viewTop.setAnimation(aniShow);
-			viewBottom.setAnimation(aniShow);
-			viewTop.setVisibility(View.VISIBLE);
-			viewBottom.setVisibility(View.VISIBLE);
-		}
-	}
-
 	@Override
 	public void onClick(View v) {
+		Intent intent;
 		Log.d(TAG, "Click : " + v.getId());
 		switch(v.getId()){
-		case R.id.wvComicDetail:
-			toggleView();
+		case R.id.viewComicDetailCommentRating:
+			intent = new Intent(TiniCubeComicDetailActivity.this, TiniCubeCommentRatingActivity.class);
+			int workId = mDataList.getDataWork().getId();
+			int chapterId = mDataChapter.getId();
+			intent.putExtra("workId", workId);
+			intent.putExtra("chapterId", chapterId);
+			startActivity(intent);
 			break;
 		}
 	}
@@ -140,6 +138,21 @@ public class TiniCubeComicDetailActivity extends TiniCubeBaseActivity implements
 			break;
 		}
 		return false;
+	}
+	private void toggleView(){
+		if(showOverlayView){
+			showOverlayView = false;
+			viewTop.startAnimation(aniHide);
+			viewBottom.startAnimation(aniHide);
+			viewTop.setVisibility(View.GONE);
+			viewBottom.setVisibility(View.GONE);
+		} else{
+			showOverlayView = true;
+			viewTop.startAnimation(aniShow);
+			viewBottom.startAnimation(aniShow);
+			viewTop.setVisibility(View.VISIBLE);
+			viewBottom.setVisibility(View.VISIBLE);
+		}
 	}
 
 }
