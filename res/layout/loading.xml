@@ -26,6 +26,7 @@
 
 
             <TextView
+                android:id="@+id/tvLoadingMessage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingBottom="10dp"
@@ -48,7 +49,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="3rdpub"
+                android:text="tinicube"
                 android:textColor="#FFDDDDDD"
                 android:textSize="18dp" />
 

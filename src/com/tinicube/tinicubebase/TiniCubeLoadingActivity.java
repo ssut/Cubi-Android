@@ -14,6 +14,8 @@ import android.view.ViewGroup.LayoutParams;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.mocoplex.adlib.AdlibConfig;
 import com.tinicube.tinicubebase.function.C;
@@ -23,9 +25,11 @@ import com.tinicube.tinicubebase.function.Pref;
 public class TiniCubeLoadingActivity extends TiniCubeBaseActivity {
 	private final String TAG = getClass().getSimpleName();
 	public boolean Debug = true;
+	private boolean loadSuccess = false;
 	private Context mContext;
 	private LinearLayout llLoadingProgress;
 	private ProgressBar mProgressBar;
+	private TextView tvMessage;
 
 	/** App 관련정보 **/
 	private String packageName;
@@ -34,7 +38,7 @@ public class TiniCubeLoadingActivity extends TiniCubeBaseActivity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		showAd = true;
+		showAd = false;
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.loading);
 		mContext= this;
@@ -64,14 +68,16 @@ public class TiniCubeLoadingActivity extends TiniCubeBaseActivity {
 		idAuthor = getResources().getString(R.string.id_author);
 		idWork = getResources().getString(R.string.id_work);
 		Pref.setInfo(mContext, idAuthor, idWork);
-		
+
 		/** 화면크기 **/
 		Display display = ((WindowManager) mContext.getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay();
 		Pref.setDisplaySize(mContext, display.getWidth(), display.getHeight());
+		tvMessage = (TextView) findViewById(R.id.tvLoadingMessage);
 
-		/** Adlibr **/
-//		packageName = getPackageName();
 		
+		/** Adlibr **/
+		//		packageName = getPackageName();
+
 		packageName = "com.tinicube.tinicubebase";
 		adAdlibr = getResources().getString(R.string.ad_adlibr);
 		initAds();
@@ -92,10 +98,16 @@ public class TiniCubeLoadingActivity extends TiniCubeBaseActivity {
 
 		@Override
 		protected Void doInBackground(Void... params) {
-			String url = C.URL_LIST + idWork;
-			Log.d(TAG, "API_MainURL : " + url);
-			JSONObject jsonObjectCubi = JsonFunc.getJSONfromURLGet(url);
-			Pref.setJsonObject(mContext, jsonObjectCubi);
+			try{
+				String url = C.URL_LIST + idWork;
+				Log.d(TAG, "API_MainURL : " + url);
+				JSONObject jsonObjectCubi = JsonFunc.getJSONfromURLGet(url);
+				Pref.setJsonObject(mContext, jsonObjectCubi);
+				loadSuccess = true;
+			} catch(Exception e){
+				e.printStackTrace();
+				loadSuccess = false;
+			}
 			return null;
 		}
 
@@ -103,9 +115,14 @@ public class TiniCubeLoadingActivity extends TiniCubeBaseActivity {
 		protected void onPostExecute(Void result) {
 			super.onPostExecute(result);
 			mProgressBar.setVisibility(View.GONE);
-			Intent intent = new Intent(TiniCubeLoadingActivity.this, TiniCubeComicListActivity.class);
-			startActivity(intent);
-			finish();
+			if(loadSuccess){
+				Intent intent = new Intent(TiniCubeLoadingActivity.this, TiniCubeComicListActivity.class);
+				startActivity(intent);
+				finish();
+			} else{
+				Toast.makeText(mContext, "서버와의 통신에 실패했습니다", Toast.LENGTH_SHORT).show();
+				tvMessage.setText("Load Faild");
+			}
 		}
 	}
 
@@ -113,13 +130,13 @@ public class TiniCubeLoadingActivity extends TiniCubeBaseActivity {
 	protected void initAds() {
 		if(Debug){
 			Log.d(TAG, "--initAds Start--");
-//			Log.d(TAG, "-INMOBI : " + packageName + ".ads.SubAdlibAdViewInmobi");
+			//			Log.d(TAG, "-INMOBI : " + packageName + ".ads.SubAdlibAdViewInmobi");
 			Log.d(TAG, "-ADAM : " + packageName + ".ads.SubAdlibAdViewAdam");
 			Log.d(TAG, "-CAULY : " + packageName + ".ads.SubAdlibAdViewCauly");
 			Log.d(TAG, "--initAds End--");
 		}
 
-//		AdlibConfig.getInstance().bindPlatform("INMOBI", packageName + ".ads.SubAdlibAdViewInmobi");
+		//		AdlibConfig.getInstance().bindPlatform("INMOBI", packageName + ".ads.SubAdlibAdViewInmobi");
 		// 쓰지 않을 광고플랫폼은 삭제해주세요.
 		AdlibConfig.getInstance().bindPlatform("ADAM", packageName + ".ads.SubAdlibAdViewAdam");
 		//AdlibConfig.getInstance().bindPlatform("ADMOB","lhy.undernation.ads.SubAdlibAdViewAdmob");
