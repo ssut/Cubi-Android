@@ -7,10 +7,13 @@ public class C {
 	public static final boolean JSON_FAILED = false;
 	
 	public static final String URL_BASE = "http://192.168.56.1:8000/";
-	public static final String API_BASE = URL_BASE + "mobile/";
-	public static final String API_LIST= API_BASE + "list/";
-	public static final String API_DETAIL= API_BASE + "detail/";
+	public static final String API_BASE = URL_BASE + "api/";
+	
 	private static final String API_CHAPTER = API_BASE + "chapter/";
-	public static final String API_CHAPTER_COMMENTRATING_LIST = API_CHAPTER + "commentrating/";
-	public static final String API_CHAPTER_COMMENT_ADD = API_CHAPTER + "add/";
+	public static final String API_CHAPTER_LIST= API_CHAPTER + "list/";
+	public static final String API_CHAPTER_VIEW= API_CHAPTER + "detail/";
+	
+	private static final String API_CHAPTER_COMMENT = API_CHAPTER + "comment/";
+	public static final String API_CHAPTER_COMMENT_LIST = API_CHAPTER_COMMENT + "list/";
+	public static final String API_CHAPTER_COMMENT_ADD = API_CHAPTER_COMMENT + "add/";
 }

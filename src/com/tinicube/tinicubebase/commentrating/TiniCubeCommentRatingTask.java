@@ -33,7 +33,7 @@ public class TiniCubeCommentRatingTask extends BaseAsyncTask {
 		HashMap<String, String> valuePair = new HashMap<String, String>();
 		valuePair.put("work_id", Integer.toString(workId));
 		valuePair.put("chapter_id", Integer.toString(chapterId));
-		resultString = postRequest(C.API_CHAPTER_COMMENTRATING_LIST, valuePair);
+		resultString = postRequest(C.API_CHAPTER_COMMENT_LIST, valuePair);
 		return super.doInBackground(params);
 	}
 

@@ -1,4 +1,6 @@
 package com.tinicube.tinicubebase;
+import java.util.HashMap;
+
 import org.json.JSONObject;
 
 import android.content.Context;
@@ -18,6 +20,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.mocoplex.adlib.AdlibConfig;
+import com.tinicube.tinicubebase.data.work.DataList;
+import com.tinicube.tinicubebase.function.BaseAsyncTask;
 import com.tinicube.tinicubebase.function.C;
 import com.tinicube.tinicubebase.function.JsonFunc;
 import com.tinicube.tinicubebase.function.Pref;
@@ -84,10 +88,17 @@ public class TiniCubeLoadingActivity extends TiniCubeBaseActivity {
 
 		/** Initalize **/
 		llLoadingProgress = (LinearLayout) findViewById(R.id.llLoadingProgress);		
-		new InitializeTask().execute();
+		new InitializeTask(mContext, "초기화 중...").execute();
 	}
 
-	private class InitializeTask extends AsyncTask<Void, Void, Void>{
+	private class InitializeTask extends BaseAsyncTask{
+		private String resultString;
+		
+		public InitializeTask(Context context, String title) {
+			super(context, title);
+			showDialog = false;
+		}
+
 		@Override
 		protected void onPreExecute() {
 			super.onPreExecute();
@@ -96,23 +107,30 @@ public class TiniCubeLoadingActivity extends TiniCubeBaseActivity {
 			llLoadingProgress.addView(mProgressBar, new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
 		}
 
+		
 		@Override
-		protected Void doInBackground(Void... params) {
+		protected Integer doInBackground(Void... params) {
 			try{
-				String url = C.API_LIST + idWork;
-				Log.d(TAG, "API_MainURL : " + url);
-				JSONObject jsonObjectCubi = JsonFunc.getJSONfromURLGet(url);
-				Pref.setJsonObject(mContext, jsonObjectCubi);
+				String workId = Pref.getIdWork(mContext);
+				HashMap<String, String> valuePair = new HashMap<String, String>();
+				valuePair.put("work_id", workId);
+				resultString = postRequest(C.API_CHAPTER_LIST, valuePair);
+				
+				// 받은 데이터 확인 후, 구성요소 있는지 테스트
+				DataList dataList = new DataList(new JSONObject(resultString));
+				dataList.getDataChapters();
+				dataList.getDataWork();
+				Pref.setJsonObjectString(mContext, resultString);
 				loadSuccess = true;
 			} catch(Exception e){
 				e.printStackTrace();
 				loadSuccess = false;
 			}
-			return null;
+			return super.doInBackground(params);
 		}
 
 		@Override
-		protected void onPostExecute(Void result) {
+		protected void onPostExecute(Integer result) {
 			super.onPostExecute(result);
 			mProgressBar.setVisibility(View.GONE);
 			if(loadSuccess){
@@ -124,6 +142,8 @@ public class TiniCubeLoadingActivity extends TiniCubeBaseActivity {
 				tvMessage.setText("Load Faild");
 			}
 		}
+
+		
 	}
 
 	// AndroidManifest.xml에 권한과 activity를 추가하여야 합니다.     

@@ -2,6 +2,8 @@ package com.tinicube.tinicubebase;
 
 import java.util.ArrayList;
 
+import org.apache.http.util.EncodingUtils;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -80,11 +82,11 @@ public class TiniCubeComicDetailActivity extends TiniCubeBaseActivity implements
 		curPosition = position;
 		mDataChapter = mDataChapterList.get(position);
 
-		String url = C.API_DETAIL + Pref.getIdWork(mContext) + "/" + mDataChapter.getId();
-		Log.d(TAG, "ChapterId : " + mDataChapter.getId());
-		Log.d(TAG, "Chapter URL : " + url);
+//		String url = C.API_VIEW + Pref.getIdWork(mContext) + "/" + mDataChapter.getId();
+		String url = C.API_CHAPTER_VIEW;
+		String postData = "work_id=" + Pref.getIdWork(mContext) + "&chapter_id=" + mDataChapter.getId();
+		Log.d(TAG, "postData : " + postData);
 		tvTitle.setText(mDataChapter.getTitle());
-
 
 		wv = (WebView) findViewById(R.id.wvComicDetail);
 		wv.getSettings().setJavaScriptEnabled(true);
@@ -95,7 +97,8 @@ public class TiniCubeComicDetailActivity extends TiniCubeBaseActivity implements
 				return false;
 			}
 		});
-		wv.loadUrl(url);
+//		wv.loadUrl(url);
+		wv.postUrl(url, EncodingUtils.getBytes(postData, "BASE64"));
 		wv.setOnTouchListener(this);
 	}
 
