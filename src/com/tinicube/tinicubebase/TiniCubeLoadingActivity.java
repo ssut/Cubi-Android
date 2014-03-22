@@ -39,6 +39,7 @@ public class TiniCubeLoadingActivity extends TiniCubeBaseActivity {
 	private String packageName;
 	private String adAdlibr;
 	private String idAuthor, idWork;
+	private String type;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -68,7 +69,8 @@ public class TiniCubeLoadingActivity extends TiniCubeBaseActivity {
 		ActionBar mActionBar = getSupportActionBar();
 		mActionBar.hide();
 
-		/** 만화 정보 **/
+		/** 작품 정보 **/
+		type = getResources().getString(R.string.type);
 		idAuthor = getResources().getString(R.string.id_author);
 		idWork = getResources().getString(R.string.id_work);
 		Pref.setInfo(mContext, idAuthor, idWork);
@@ -134,9 +136,15 @@ public class TiniCubeLoadingActivity extends TiniCubeBaseActivity {
 			super.onPostExecute(result);
 			mProgressBar.setVisibility(View.GONE);
 			if(loadSuccess){
-				Intent intent = new Intent(TiniCubeLoadingActivity.this, TiniCubeComicListActivity.class);
-				startActivity(intent);
-				finish();
+				Intent intent = null;
+				if(type.equals("webtoon")){
+					intent = new Intent(TiniCubeLoadingActivity.this, TiniCubeComicListActivity.class);
+					startActivity(intent);
+					finish();
+				} else{
+					Toast.makeText(mContext, "작품 타입을 찾을 수 없습니다", Toast.LENGTH_SHORT).show();
+				}
+				
 			} else{
 				Toast.makeText(mContext, "서버와의 통신에 실패했습니다", Toast.LENGTH_SHORT).show();
 				tvMessage.setText("Load Faild");
@@ -146,7 +154,7 @@ public class TiniCubeLoadingActivity extends TiniCubeBaseActivity {
 		
 	}
 
-	// AndroidManifest.xml에 권한과 activity를 추가하여야 합니다.     
+	// 광고 초기화 함수
 	protected void initAds() {
 		if(Debug){
 			Log.d(TAG, "--initAds Start--");
@@ -156,8 +164,8 @@ public class TiniCubeLoadingActivity extends TiniCubeBaseActivity {
 			Log.d(TAG, "--initAds End--");
 		}
 
-		//		AdlibConfig.getInstance().bindPlatform("INMOBI", packageName + ".ads.SubAdlibAdViewInmobi");
-		// 쓰지 않을 광고플랫폼은 삭제해주세요.
+		//AdlibConfig.getInstance().bindPlatform("INMOBI", packageName + ".ads.SubAdlibAdViewInmobi");
+		//쓰지 않을 광고플랫폼은 삭제해주세요.
 		AdlibConfig.getInstance().bindPlatform("ADAM", packageName + ".ads.SubAdlibAdViewAdam");
 		//AdlibConfig.getInstance().bindPlatform("ADMOB","lhy.undernation.ads.SubAdlibAdViewAdmob");
 		AdlibConfig.getInstance().bindPlatform("CAULY", packageName + ".ads.SubAdlibAdViewCauly");

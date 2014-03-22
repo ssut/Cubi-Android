@@ -35,7 +35,6 @@ public class SubAdlibAdViewAdam extends SubAdlibAdViewCore  {
 	protected boolean bGotAd = false;
 	
 	// 여기에 ADAM ID 를 입력하세요.
-	
 	static String adamID;
     static String adamInterstitialID = "ADAM_INTERSTITIAL_ID";
 

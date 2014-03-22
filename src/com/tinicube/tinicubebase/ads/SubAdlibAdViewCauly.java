@@ -37,7 +37,6 @@ public class SubAdlibAdViewCauly extends SubAdlibAdViewCore  {
 		// 여기에 CAULY ID를 입력합니다.
 		adCauly = getResources().getString(R.string.ad_cauly);
 		String caulyID = adCauly;
-//		Log.d("3rdpub", "AdlibCauly : " + caulyID);
 		
 		CaulyAdInfo ai = new CaulyAdInfoBuilder(caulyID).effect("RightSlide").bannerHeight("Proportional").build();
 

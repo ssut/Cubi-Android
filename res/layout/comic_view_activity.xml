@@ -3,7 +3,7 @@
     android:layout_height="fill_parent" >
 
     <WebView
-        android:id="@+id/wvComicDetail"
+        android:id="@+id/wvComicView"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
@@ -13,7 +13,7 @@
         android:orientation="vertical" >
 
         <LinearLayout
-            android:id="@+id/viewComicDetailTop"
+            android:id="@+id/viewComicViewTop"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:alpha="0.9"
@@ -23,7 +23,7 @@
             android:visibility="gone" >
 
             <TextView
-                android:id="@+id/tvComicDetailTitle"
+                android:id="@+id/tvComicViewTitle"
                 android:layout_width="0dp"
                 android:layout_height="40dp"
                 android:layout_weight="1"
@@ -43,7 +43,7 @@
                 android:background="@color/line_right" />
 
             <ImageButton
-                android:id="@+id/btnComicDetailShare"
+                android:id="@+id/ibComicViewShare"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:background="@color/transparent"
@@ -56,29 +56,31 @@
             android:layout_weight="1" />
 
         <LinearLayout
-            android:id="@+id/viewComicDetailBottom"
+            android:id="@+id/viewComicViewBottom"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            
             android:alpha="0.9"
             android:background="@drawable/gradient_comic_detail"
             android:clickable="true"
             android:focusable="true"
-            android:visibility="gone" >
+            >
 
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="40dp"
                 android:layout_weight="1"
-                android:id="@+id/viewComicDetailCommentRating"
+                android:id="@+id/viewComicViewCommentRating"
                 android:gravity="center" >
 
                 <LinearLayout
                     android:layout_width="wrap_content"
+                    android:gravity="center_vertical"
                     android:layout_height="match_parent" >
 
                     <ImageView
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
                         android:padding="5dp"
                         android:src="@drawable/icon_pencil" />
 
@@ -91,7 +93,7 @@
                         android:textSize="@dimen/comicdetail_fontsize" />
 
                     <TextView
-                        android:id="@+id/tvComicDetailCommentNumber"
+                        android:id="@+id/tvComicViewCommentNumber"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_marginLeft="3dp"
@@ -113,11 +115,12 @@
 
                 <LinearLayout
                     android:layout_width="wrap_content"
+                    android:gravity="center_vertical"
                     android:layout_height="match_parent" >
 
                     <ImageView
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
                         android:layout_marginLeft="15dp"
                         android:padding="5dp"
                         android:src="@drawable/icon_rating" />
@@ -131,7 +134,7 @@
                         android:textSize="@dimen/comicdetail_fontsize" />
 
                     <TextView
-                        android:id="@+id/tvComicDetailRating"
+                        android:id="@+id/tvComicViewRating"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_marginLeft="3dp"
@@ -152,7 +155,7 @@
                 android:background="@color/line_right" />
 
             <ImageButton
-                android:id="@+id/btnComicDetailPrev"
+                android:id="@+id/ibComicViewPrev"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:background="@color/transparent"
@@ -169,7 +172,7 @@
                 android:background="@color/line_right" />
 
             <ImageButton
-                android:id="@+id/btnComicDetailNext"
+                android:id="@+id/ibComicViewNext"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:background="@color/transparent"

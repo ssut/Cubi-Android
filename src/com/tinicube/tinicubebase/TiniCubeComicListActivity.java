@@ -62,8 +62,6 @@ public class TiniCubeComicListActivity extends TiniCubeBaseActivity implements O
 		lvComic = (ListView) findViewById(R.id.lvComic);
 		LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		viewHeader = (View) findViewById(R.id.viewComicHeader);
-		//		viewHeader = inflater.inflate(R.layout.comic_header, null);
-		//		lvComic.addHeaderView(viewHeader);
 		viewFooter = inflater.inflate(R.layout.comic_list_footer, null);
 		lvComic.addFooterView(viewFooter);
 
@@ -130,7 +128,17 @@ public class TiniCubeComicListActivity extends TiniCubeBaseActivity implements O
 			// 왠지 레이팅바 Max값이 안변함 -_-;
 			RatingBar rb = (RatingBar) curView.findViewById(R.id.rbComicListItem);
 			float rating = (float) curChapter.getRating()/2;
-			rb.setRating(rating);
+			String strRating = String.format("%.1f", rating);
+			float ratingFinal = Float.parseFloat(strRating);
+			Log.d(TAG, "rating:" + rating);
+			Log.d(TAG, "strRating:" + strRating);
+			Log.d(TAG, "ratingFinal:" + ratingFinal);
+			float rating2 = Math.round(rating*10);
+			float rating3 = rating2 / 10;
+			
+//			Log.d(TAG, "rating2:" + rating2);
+//			Log.d(TAG, "rating3:" + rating3);
+			rb.setRating(ratingFinal);
 			rb.setIsIndicator(true);
 			rb.setFocusable(false);
 			tvRating.setText("" + curChapter.getRating());
@@ -145,7 +153,7 @@ public class TiniCubeComicListActivity extends TiniCubeBaseActivity implements O
 		// Position 0, Last(Header, Footer) 일때는 작동하지않고, position-1값을 넘겨줌
 		DataChapter curDataChapter = mDataChapterList.get(position);
 		int chapterId = curDataChapter.getId();
-		Intent intent = new Intent(TiniCubeComicListActivity.this, TiniCubeComicDetailActivity.class);
+		Intent intent = new Intent(TiniCubeComicListActivity.this, TiniCubeComicViewActivity.class);
 		intent.putExtra("chapterId", chapterId);
 		intent.putExtra("position", position);
 		startActivity(intent);

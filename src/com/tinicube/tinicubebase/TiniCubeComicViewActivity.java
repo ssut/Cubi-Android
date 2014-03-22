@@ -17,6 +17,7 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.androidquery.AQuery;
 import com.tinicube.tinicubebase.commentrating.TiniCubeCommentRatingActivity;
@@ -25,7 +26,7 @@ import com.tinicube.tinicubebase.data.work.DataList;
 import com.tinicube.tinicubebase.function.C;
 import com.tinicube.tinicubebase.function.Pref;
 
-public class TiniCubeComicDetailActivity extends TiniCubeBaseActivity implements OnClickListener, OnTouchListener {
+public class TiniCubeComicViewActivity extends TiniCubeBaseActivity implements OnClickListener, OnTouchListener {
 	private final String TAG = this.getClass().getSimpleName();
 	private AQuery aq;
 
@@ -41,7 +42,7 @@ public class TiniCubeComicDetailActivity extends TiniCubeBaseActivity implements
 	private boolean isDrag = false;
 	
 	private Animation aniShow, aniHide;
-	private ImageButton btnPrev, btnNext;
+	private ImageButton ibPrev, ibNext, ibShare;
 	private View viewCommentRating;
 
 	private int curPosition = 0;
@@ -49,20 +50,23 @@ public class TiniCubeComicDetailActivity extends TiniCubeBaseActivity implements
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.comic_detail_activity);
+		setContentView(R.layout.comic_view_activity);
 		aq = new AQuery(this);
 
 		getSupportActionBar().hide();
 
 		/** UI Setting **/
-		tvTitle = (TextView) findViewById(R.id.tvComicDetailTitle);
-		btnPrev = (ImageButton) findViewById(R.id.btnComicDetailPrev);
-		btnNext = (ImageButton) findViewById(R.id.btnComicDetailNext);
-		viewTop = (View) findViewById(R.id.viewComicDetailTop);
-		viewBottom = (View) findViewById(R.id.viewComicDetailBottom);
-		viewCommentRating = (View) findViewById(R.id.viewComicDetailCommentRating);
+		tvTitle = (TextView) findViewById(R.id.tvComicViewTitle);
+		ibPrev = (ImageButton) findViewById(R.id.ibComicViewPrev);
+		ibNext = (ImageButton) findViewById(R.id.ibComicViewNext);
+		ibShare = (ImageButton) findViewById(R.id.ibComicViewShare);
+		viewTop = (View) findViewById(R.id.viewComicViewTop);
+		viewBottom = (View) findViewById(R.id.viewComicViewBottom);
+		viewCommentRating = (View) findViewById(R.id.viewComicViewCommentRating);
 		
 		/** UI Event **/
+		ibPrev.setOnClickListener(this);
+		ibNext.setOnClickListener(this);
 		viewCommentRating.setOnClickListener(this);
 
 		/** Animation **/
@@ -72,33 +76,30 @@ public class TiniCubeComicDetailActivity extends TiniCubeBaseActivity implements
 		aniHide = new AlphaAnimation(1, 0);
 		aniHide.setDuration(250);
 
-		/** 리스트에서 전달받은 DataChapterList 변수에 삽입 **/
+		/** 리스트에서 전달받은 DataList 변수에 삽입, 선택된 DataChapter를 position값과 전체 List로부터 찾아냄 **/
 		mDataList = new DataList(Pref.getJsonObject(mContext));
 		mDataChapterList = mDataList.getDataChapters();
 
 		Intent intent = getIntent();
-		//		int chapterId = intent.getIntExtra("chapterId", 0);
 		int position = intent.getIntExtra("position", 0);
 		curPosition = position;
 		mDataChapter = mDataChapterList.get(position);
 
-//		String url = C.API_VIEW + Pref.getIdWork(mContext) + "/" + mDataChapter.getId();
-		String url = C.API_CHAPTER_VIEW;
 		String postData = "work_id=" + Pref.getIdWork(mContext) + "&chapter_id=" + mDataChapter.getId();
 		Log.d(TAG, "postData : " + postData);
-		tvTitle.setText(mDataChapter.getTitle());
+		setChapterTitle(mDataChapter.getTitle());
 
-		wv = (WebView) findViewById(R.id.wvComicDetail);
+		/** WebView **/
+		wv = (WebView) findViewById(R.id.wvComicView);
 		wv.getSettings().setJavaScriptEnabled(true);
 		wv.setWebViewClient(new WebViewClient(){
 			@Override
 			public boolean shouldOverrideUrlLoading(WebView view, String url) {
-				setTitle(url);
+				setChapterTitle(url);
 				return false;
 			}
 		});
-//		wv.loadUrl(url);
-		wv.postUrl(url, EncodingUtils.getBytes(postData, "BASE64"));
+		wv.postUrl(C.API_CHAPTER_VIEW, EncodingUtils.getBytes(postData, "BASE64"));
 		wv.setOnTouchListener(this);
 	}
 
@@ -106,42 +107,67 @@ public class TiniCubeComicDetailActivity extends TiniCubeBaseActivity implements
 	public void onClick(View v) {
 		Intent intent;
 		Log.d(TAG, "Click : " + v.getId());
-		switch(v.getId()){
-		case R.id.viewComicDetailCommentRating:
-			intent = new Intent(TiniCubeComicDetailActivity.this, TiniCubeCommentRatingActivity.class);
+		int id = v.getId();
+		if (id == R.id.viewComicViewCommentRating) {
+			intent = new Intent(TiniCubeComicViewActivity.this, TiniCubeCommentRatingActivity.class);
 			int workId = mDataList.getDataWork().getId();
 			int chapterId = mDataChapter.getId();
 			intent.putExtra("workId", workId);
 			intent.putExtra("chapterId", chapterId);
 			startActivity(intent);
-			break;
+		} else if (id == R.id.ibComicViewNext) {
+			if(curPosition<=0){
+				Toast.makeText(mContext, "마지막 화 입니다", Toast.LENGTH_SHORT).show();
+			} else{
+				curPosition -= 1;
+				DataChapter curChapter = mDataChapterList.get(curPosition);
+				String postData = "work_id=" + Pref.getIdWork(mContext) + "&chapter_id=" + curChapter.getId();
+				wv.postUrl(C.API_CHAPTER_VIEW, EncodingUtils.getBytes(postData, "BASE64"));
+				setChapterTitle(curChapter.getTitle());
+			}
+		} else if (id == R.id.ibComicViewPrev) {
+			if(curPosition>=mDataChapterList.size()-1){
+				Toast.makeText(mContext, "첫 화 입니다", Toast.LENGTH_SHORT).show();
+			} else{
+				curPosition += 1;
+				DataChapter curChapter = mDataChapterList.get(curPosition);
+				String postData = "work_id=" + Pref.getIdWork(mContext) + "&chapter_id=" + curChapter.getId();
+				wv.postUrl(C.API_CHAPTER_VIEW, EncodingUtils.getBytes(postData, "BASE64"));
+				setChapterTitle(curChapter.getTitle());
+			}
+		} else if (id == R.id.ibComicViewShare) {
 		}
 	}
 
 	@Override
 	public boolean onTouch(View v, MotionEvent event) {
-		switch(v.getId()){
-		case R.id.wvComicDetail:
+		int id = v.getId();
+		if (id == R.id.wvComicView) {
 			switch(event.getAction()){
 			case MotionEvent.ACTION_DOWN:
-				Log.d(TAG, "Action_Down");
+//				Log.d(TAG, "Action_Down");
 				isDrag = false;
 				break;
 			case MotionEvent.ACTION_MOVE:
-				Log.d(TAG, "Action_Move");
+//				Log.d(TAG, "Action_Move");
 				isDrag = true;
 				break;
 			case MotionEvent.ACTION_UP:
-				Log.d(TAG, "Action_Up");
+//				Log.d(TAG, "Action_Up");
 				if(!isDrag){
 					toggleView();
 				}
 				break;
 			}
-			break;
 		}
 		return false;
 	}
+	
+	private void setChapterTitle(String title){
+//		tvTitle.setText(mDataChapter.getTitle());
+		tvTitle.setText(title);
+	}
+	
 	private void toggleView(){
 		if(showOverlayView){
 			showOverlayView = false;
