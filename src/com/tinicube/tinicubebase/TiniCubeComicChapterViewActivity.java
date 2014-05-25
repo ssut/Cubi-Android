@@ -26,9 +26,8 @@ import com.tinicube.tinicubebase.data.work.DataList;
 import com.tinicube.tinicubebase.function.C;
 import com.tinicube.tinicubebase.function.Pref;
 
-public class TiniCubeComicViewActivity extends TiniCubeBaseActivity implements OnClickListener, OnTouchListener {
+public class TiniCubeComicChapterViewActivity extends TiniCubeBaseActivity implements OnClickListener, OnTouchListener {
 	private final String TAG = this.getClass().getSimpleName();
-	private AQuery aq;
 
 	private TextView tvTitle;
 
@@ -51,10 +50,9 @@ public class TiniCubeComicViewActivity extends TiniCubeBaseActivity implements O
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.comic_view_activity);
-		aq = new AQuery(this);
 
-		getSupportActionBar().hide();
-
+		mActionBar.hide();
+		
 		/** UI Setting **/
 		tvTitle = (TextView) findViewById(R.id.tvComicViewTitle);
 		ibPrev = (ImageButton) findViewById(R.id.ibComicViewPrev);
@@ -109,7 +107,7 @@ public class TiniCubeComicViewActivity extends TiniCubeBaseActivity implements O
 		Log.d(TAG, "Click : " + v.getId());
 		int id = v.getId();
 		if (id == R.id.viewComicViewCommentRating) {
-			intent = new Intent(TiniCubeComicViewActivity.this, TiniCubeCommentRatingActivity.class);
+			intent = new Intent(TiniCubeComicChapterViewActivity.this, TiniCubeCommentRatingActivity.class);
 			int workId = mDataList.getDataWork().getId();
 			int chapterId = mDataChapter.getId();
 			intent.putExtra("workId", workId);

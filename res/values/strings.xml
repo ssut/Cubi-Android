@@ -3,8 +3,8 @@
 
     <!-- Cubi Information -->
     <string name="app_name">CubiBase</string>
-    <string name="id_author">2</string>
-    <string name="id_work">1</string>
+    <string name="id_author">1</string>
+    <string name="id_work">2</string>
 	
 	<!-- AD Info -->
 	<string name="ad_adlibr">512755ffe4b02fa05c6baae1</string>

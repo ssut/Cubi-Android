@@ -26,7 +26,7 @@ import com.tinicube.tinicubebase.function.C;
 import com.tinicube.tinicubebase.function.JsonFunc;
 import com.tinicube.tinicubebase.function.Pref;
 
-public class TiniCubeLoadingActivity extends TiniCubeBaseActivity {
+public class TiniCubeComicLoadingActivity extends TiniCubeBaseActivity {
 	private final String TAG = getClass().getSimpleName();
 	public boolean Debug = true;
 	private boolean loadSuccess = false;
@@ -79,7 +79,6 @@ public class TiniCubeLoadingActivity extends TiniCubeBaseActivity {
 		Display display = ((WindowManager) mContext.getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay();
 		Pref.setDisplaySize(mContext, display.getWidth(), display.getHeight());
 		tvMessage = (TextView) findViewById(R.id.tvLoadingMessage);
-
 		
 		/** Adlibr **/
 		//		packageName = getPackageName();
@@ -138,7 +137,7 @@ public class TiniCubeLoadingActivity extends TiniCubeBaseActivity {
 			if(loadSuccess){
 				Intent intent = null;
 				if(type.equals("webtoon")){
-					intent = new Intent(TiniCubeLoadingActivity.this, TiniCubeComicListActivity.class);
+					intent = new Intent(TiniCubeComicLoadingActivity.this, TiniCubeComicChapterListActivity.class);
 					startActivity(intent);
 					finish();
 				} else{

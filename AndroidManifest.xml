@@ -24,7 +24,7 @@
         android:label="@string/app_name"
         android:theme="@style/Theme.AppCompat.Light.DarkActionBar" >
         <activity
-            android:name="com.tinicube.tinicubebase.TiniCubeLoadingActivity"
+            android:name="com.tinicube.tinicubebase.TiniCubeComicLoadingActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -32,8 +32,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.tinicube.tinicubebase.TiniCubeComicListActivity" />
-        <activity android:name="com.tinicube.tinicubebase.TiniCubeComicViewActivity" />
+        <activity android:name="com.tinicube.tinicubebase.TiniCubeComicChapterListActivity" />
+        <activity android:name="com.tinicube.tinicubebase.TiniCubeComicChapterViewActivity" />
         <activity android:name="com.tinicube.tinicubebase.commentrating.TiniCubeCommentRatingActivity" />
 
         <!-- Adlibr -->

@@ -27,9 +27,8 @@ import com.tinicube.tinicubebase.data.work.DataList;
 import com.tinicube.tinicubebase.data.work.DataWork;
 import com.tinicube.tinicubebase.function.Pref;
 
-public class TiniCubeComicListActivity extends TiniCubeBaseActivity implements OnItemClickListener{
+public class TiniCubeComicChapterListActivity extends TiniCubeBaseActivity implements OnItemClickListener{
 	private final String TAG = this.getClass().getSimpleName();
-	private AQuery aq;
 
 	private View viewHeader, viewFooter;
 	private ImageView ivComicCover;
@@ -37,9 +36,7 @@ public class TiniCubeComicListActivity extends TiniCubeBaseActivity implements O
 	private TextView tvComicDescription;
 	private ListView lvComic;
 	private AAComic mAAComic;
-
-	private ActionBar mActionBar;
-
+	
 	private DataList mDataList;
 	private DataWork mDataWork;
 	private ArrayList<DataChapter> mDataChapterList;
@@ -48,14 +45,12 @@ public class TiniCubeComicListActivity extends TiniCubeBaseActivity implements O
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.comic_list_activity);
-		aq = new AQuery(this);
 
 		mDataList = new DataList(Pref.getJsonObject(mContext));
 		mDataWork = mDataList.getDataWork();
 		mDataChapterList = mDataList.getDataChapters();
 
 		// ActionBar
-		mActionBar = getSupportActionBar();
 		mActionBar.hide();
 
 		// ListView & Header
@@ -153,7 +148,7 @@ public class TiniCubeComicListActivity extends TiniCubeBaseActivity implements O
 		// Position 0, Last(Header, Footer) 일때는 작동하지않고, position-1값을 넘겨줌
 		DataChapter curDataChapter = mDataChapterList.get(position);
 		int chapterId = curDataChapter.getId();
-		Intent intent = new Intent(TiniCubeComicListActivity.this, TiniCubeComicViewActivity.class);
+		Intent intent = new Intent(TiniCubeComicChapterListActivity.this, TiniCubeComicChapterViewActivity.class);
 		intent.putExtra("chapterId", chapterId);
 		intent.putExtra("position", position);
 		startActivity(intent);
